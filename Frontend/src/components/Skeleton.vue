@@ -1,6 +1,6 @@
 <template>
-	<div class="flex w-full flex-col gap-5">
-		<div v-for="n in 3" class="flex items-center justify-between w-full px-4">
+	<div class="flex w-full flex-col gap-6">
+		<div v-for="n in 7" class="flex items-center justify-between w-full px-4">
 			<div class="flex items-center gap-4">
 				<div class="skeleton h-12 w-12 shrink-0 rounded-full"></div>
 				<div class="skeleton h-8 w-20"></div>
@@ -14,7 +14,4 @@
 		</div>
 	</div>
 </template>
-<script setup lang="ts">
-import IconSearch from './Icons/IconSearch.vue'
-import IconPlus from './Icons/IconPlus.vue'
-</script>
+<script setup lang="ts"></script>
