@@ -1,9 +1,21 @@
 import dbpool from '../db/connection'
 import { User } from '../interfaces/user'
 
-const getUsersModel = async () => {
-	const [users] = await dbpool.query('SELECT * FROM usuarios')
-	return users
+const getUsersModel = async (page: number, limit: number) => {
+    const offset = (page - 1) * limit
+
+    const [users] = await dbpool.query(
+        'SELECT * FROM usuarios LIMIT ? OFFSET ?', 
+        [limit, offset]
+    )
+
+    const [countResult] = await dbpool.query(
+        'SELECT COUNT(*) as total FROM usuarios'
+    ) 
+
+    const total = (countResult as any[])[0].total
+
+    return { users, total }
 }
 
 const getUserModel = async (id: number) => {

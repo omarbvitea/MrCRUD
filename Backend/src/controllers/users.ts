@@ -9,9 +9,17 @@ import {
 } from '../models/user'
 
 const getUsers = async (req: Request, res: Response) => {
-	const users = await getUsersModel()
+    const page = Number(req.query.page as string) || 1
+    const limit = Number(req.query.limit as string) || 7
 
-	res.json(users)
+    const { users, total } = await getUsersModel(page, limit)
+
+    res.json({
+        users,
+        total,
+        page,
+        totalPages: Math.ceil(total / limit)
+    })
 }
 
 const getUser = async (req: Request, res: Response) => {
