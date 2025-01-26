@@ -5,7 +5,7 @@
                 <p class="text-center">
                     Are you sure you want to delete
                     <span class="text-warning"
-                        >@{{ userStore.user?.nombre }}</span
+                        >@{{ userStore.user.selected?.nombre }}</span
                     >
                     from the list?
                 </p>
@@ -25,7 +25,7 @@
                         class="btn btn-error"
                         @click="userStore.deleteUser()"
                     >
-                        <p v-if="!userStore.isLoading">Delete</p>
+                        <p v-if="!userStore.state.isLoading">Delete</p>
                         <span
                             v-else
                             class="loading loading-spinner loading-md"
@@ -35,9 +35,9 @@
             </div>
         </div>
     </dialog>
-    <div class="toast" v-if="userStore.showToast">
-        <div v-if="userStore.error !== ''" class="alert alert-error">
-            {{ userStore.error }}
+    <div class="toast" v-if="userStore.state.showToast">
+        <div v-if="userStore.state.error !== ''" class="alert alert-error">
+            {{ userStore.state.error }}
         </div>
         <div v-else class="alert alert-success">User deleted successfully!</div>
     </div>
