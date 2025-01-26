@@ -1,0 +1,17 @@
+{
+	"useTabs": true,
+	"tabWidth": 2,
+	"semi": false,
+	"singleQuote": true,
+	"quoteProps": "as-needed",
+	"trailingComma": "none",
+	"bracketSpacing": true,
+	"arrowParens": "avoid",
+	"endOfLine": "lf",
+	"htmlWhitespaceSensitivity": "strict",
+	"insertPragma": false,
+	"requirePragma": false,
+	"proseWrap": "preserve",
+	"embeddedLanguageFormatting": "off",
+	"printWidth": 80
+}
