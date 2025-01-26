@@ -66,10 +66,15 @@
 										<div
 											class="flex w-full items-center gap-1 md:gap-2 justify-end"
 										>
-											<button class="btn btn-ghost btn-circle"
+											<button
+												class="btn btn-ghost btn-circle"
+												onclick="editUserModal.showModal()"
 												><IconEdit class="text-info"
 											/></button>
-											<button class="btn btn-ghost btn-circle">
+											<button
+												class="btn btn-ghost btn-circle"
+												onclick="deleteUserModal.showModal()"
+											>
 												<IconTrash class="text-error" />
 											</button>
 										</div>
@@ -77,6 +82,8 @@
 								</tr>
 							</tbody>
 						</table>
+						<EditUserDialog />
+						<DeleteUserDialog />
 					</div>
 				</div>
 				<div class="w-full flex justify-center">
@@ -99,7 +106,10 @@ import IconEdit from './components/Icons/IconEdit.vue'
 import IconTrash from './components/Icons/IconTrash.vue'
 import ThemeSwitcher from './components/ThemeSwitcher.vue'
 import Skeleton from './components/Skeleton.vue'
-import CreateUserDialog from './components/CreateUserDialog.vue'
+import CreateUserDialog from './components/dialogs/CreateUserDialog.vue'
+import EditUserDialog from './components/dialogs/EditUserDialog.vue'
+import DeleteUserDialog from './components/dialogs/DeleteUserDialog.vue'
+
 import { ref } from 'vue'
 
 const loading = ref(false)

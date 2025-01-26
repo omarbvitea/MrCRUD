@@ -38,6 +38,6 @@
 	</dialog>
 </template>
 <script setup lang="ts">
-import IconPerson from './Icons/IconPerson.vue'
-import IconMail from './Icons/IconMail.vue'
+import IconPerson from '../Icons/IconPerson.vue';
+import IconMail from '../Icons/IconMail.vue';
 </script>
