@@ -9,7 +9,7 @@ Este documento describe los pasos necesarios para configurar y ejecutar el proye
 
 ## Instalar dependencias
 
-Ejecuta el siguiente comando en la raíz del proyecto para instalar todas las dependencias definidas en package.json:
+Ejecuta el siguiente comando en la raíz del proyecto para instalar todas las dependencias definidas en `package.json`
 
 ```
 npm run install
