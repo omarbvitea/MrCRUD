@@ -41,12 +41,12 @@ src/
 ├── App.vue                 # Componente raíz de la aplicación
 │
 ├── components/		    # Componentes
-│   ├── Skeleton.vue        # Componente de carga
-│   ├── ThemeSwitcher.vue   # Selector de tema claro/oscuro
-│   ├── Icons/              # Componentes de iconografía
+│   ├── ui					# Componentes de diseño
+│   ├── icons/              # Componentes de iconografía
 │   ├── modals/             # Modales de la aplicación
 │   └── users/	            # Componentes relacionados con usuarios
 │
+├── composables/            # Reusable logic
 ├── interfaces/             # Interfaces de TypeScript
 ├── services/               # Servicios api
 └── stores/                 # Estados globales con Pinia
