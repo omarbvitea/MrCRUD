@@ -8,6 +8,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import IconSun from './Icons/IconSun.vue'
-import IconMoon from './Icons/IconMoon.vue'
+import IconSun from '../icons/IconSun.vue'
+import IconMoon from '../icons/IconMoon.vue'
 </script>
