@@ -34,6 +34,9 @@ npm run dev
 
 Abre tu navegador web y accede a la URL proporcionada en la terminal, generalmente http://localhost:5173.
 
+> [!IMPORTANT]
+> Si estas usando linux es probable que tengas un error, para esto borra los `node_modules` y el `package_lock.json` caso contrario ignora este mensaje
+
 ## Estructura principal
 
 ```
