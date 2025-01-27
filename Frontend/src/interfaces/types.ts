@@ -2,7 +2,7 @@ export interface User {
     id: number
     nombre: string
     correo: string
-    edad: number
+    edad?: number
 }
 
 export interface UserState {
@@ -12,8 +12,12 @@ export interface UserState {
 
 export interface State {
     isLoading: boolean
+    isCreating: boolean
     isDeleting: boolean
-    showToast: boolean
+    isEditing: boolean
+    showDeleteToast: boolean
+    showCreateToast: boolean
+    showEditToast: boolean
     error: string
 }
 
