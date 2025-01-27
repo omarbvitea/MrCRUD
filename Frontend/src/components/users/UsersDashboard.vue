@@ -2,7 +2,7 @@
     <section
         class="flex flex-col justify-between bg-base-100 p-3 sm:p-8 rounded-xl sm:shadow-2xl h-full sm:h-[750px]"
     >
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-4 h-full">
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center gap-2">
                     <h1 class="text-xl font-medium">All users</h1>
@@ -38,10 +38,12 @@
                 </div>
             </div>
             <Skeleton v-if="state.isLoading" class="mt-14" />
+            <NoUsers v-else-if="user.list.length === 0" />
             <UsersTable v-else :users="filteredUsers" />
         </div>
         <div class="w-full flex justify-center">
             <UsersPagination
+                v-if="user.list.length !== 0"
                 :currentPage="pagination.currentPage"
                 :totalPages="pagination.totalPages"
                 @change-page="changePage"
@@ -63,6 +65,7 @@ import ModalEdit from '../modals/ModalEdit.vue'
 import ModalDelete from '../modals/ModalDelete.vue'
 import UsersPagination from './UsersPagination.vue'
 import UsersTable from './UsersTable.vue'
+import NoUsers from '../ui/NoUsers.vue'
 
 const userStore = useUserStore()
 const { user, pagination, state } = storeToRefs(userStore)
