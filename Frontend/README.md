@@ -41,12 +41,12 @@ src/
 ├── App.vue                 # Componente raíz de la aplicación
 │
 ├── components/		    # Componentes
-│   ├── ui					# Componentes de diseño
+│   ├── ui	            # Componentes de diseño
 │   ├── icons/              # Componentes de iconografía
 │   ├── modals/             # Modales de la aplicación
 │   └── users/	            # Componentes relacionados con usuarios
 │
-├── composables/            # Reusable logic
+├── composables/            # Lógica reutilizable 
 ├── interfaces/             # Interfaces de TypeScript
 ├── services/               # Servicios api
 └── stores/                 # Estados globales con Pinia
