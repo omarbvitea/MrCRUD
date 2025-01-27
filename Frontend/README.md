@@ -24,8 +24,7 @@ VITE_BACKEND_API = 'http://localhost:4000/usuarios'
 ```
 
 > [!IMPORTANT]
-> El prefijo VITE\_ es obligatorio para que Vite exponga las variables
-> Las variables sin este prefijo no estarán disponibles en el código
+> El prefijo VITE\_ es obligatorio para que vite exponga las variables
 
 ## Ejecutar proyecto
 
