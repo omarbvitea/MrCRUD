@@ -17,7 +17,11 @@
                 <div class="flex gap-4 items-center">
                     <label class="input hidden sm:flex">
                         <IconSearch />
-                        <input type="search" placeholder="Search" />
+                        <input
+                            v-model="toSearch"
+                            type="search"
+                            placeholder="Search"
+                        />
                     </label>
                     <button class="flex sm:hidden btn btn-circle btn-soft">
                         <IconSearch />
@@ -34,7 +38,7 @@
             <Skeleton v-if="state.isLoading" class="mt-14" />
             <UsersTable v-else>
                 <UserTableRow
-                    v-for="user in user.list"
+                    v-for="user in filteredUsers"
                     :key="user.id"
                     :user="user"
                 />
@@ -49,22 +53,37 @@
         </div>
     </section>
 </template>
+
 <script setup lang="ts">
 import { useUserStore } from '../../stores/userStore'
 import { storeToRefs } from 'pinia'
+import { ref, computed } from 'vue'
 
 import IconSearch from '../Icons/IconSearch.vue'
 import IconPlus from '../Icons/IconPlus.vue'
 import ModalCreate from '../modals/ModalCreate.vue'
 import Skeleton from '../Skeleton.vue'
 import UserTableRow from './UserTableRow.vue'
-
 import UsersPagination from './UsersPagination.vue'
 import UsersTable from './UsersTable.vue'
 import { onMounted } from 'vue'
 
 const userStore = useUserStore()
 const { user, pagination, state } = storeToRefs(userStore)
+
+const toSearch = ref('')
+
+const filteredUsers = computed(() => {
+    if (toSearch.value.trim() === '') {
+        return user.value.list
+    }
+    return user.value.list.filter(
+        (user) =>
+            user.nombre.toLowerCase().includes(toSearch.value.toLowerCase()) ||
+            user.correo.toLowerCase().includes(toSearch.value.toLowerCase()) ||
+            user.edad?.toString().includes(toSearch.value.toLowerCase())
+    )
+})
 
 const changePage = (page: number) => {
     if (page > 0) {
