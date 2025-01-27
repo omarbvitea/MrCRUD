@@ -1,19 +1,22 @@
 # MrCrud Guide
 
+> [!NOTE]
+> Este proyecto ha sido probado tanto en **Windows 11** como en **Manjaro Linux** y es totalmente funcional
+
 ## Backend
 
-La aplicación de backend es una API RESTful construida con las siguientes tecnologías:
+La aplicación de backend es una API REST construida con las siguientes tecnologías:
 
 - **Node.js** con **Express**
 - **mysql2** para la conexión a bases de datos MySQL
 - **zod** para validación de datos
 - **TypeScript** para un desarrollo más robusto y tipado
 
-[Documentación Backend](./Backend/README.md)
+[Link para la documentación Backend](./Backend/README.md)
 
 ## Frontend
 
-El frontend es una **SPA responsive** construida con:
+El frontend es una **SPA responsive** construido con:
 
 - **Vue 3** para la creación de la interfaz de usuario
 - **Tailwind CSS** para un diseño flexible y moderno
@@ -21,4 +24,4 @@ El frontend es una **SPA responsive** construida con:
 - **Axios** para gestionar las solicitudes HTTP
 - **Pinia** para el manejo del estado en Vue
 
-[Documentación Frontend](./Frontend/README.md)
+[Link para la documentación Frontend](./Frontend/README.md)
