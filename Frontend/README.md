@@ -46,7 +46,7 @@ src/
 │   ├── modals/             # Modales de la aplicación
 │   └── users/	            # Componentes relacionados con usuarios
 │
-├── composables/            # Reusable logic
+├── composables/            # Lógica reutilizable 
 ├── interfaces/             # Interfaces de TypeScript
 ├── services/               # Servicios api
 └── stores/                 # Estados globales con Pinia
