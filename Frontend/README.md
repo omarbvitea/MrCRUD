@@ -1,5 +1,54 @@
-# Vue 3 + TypeScript + Vite
+# Guía Frontend
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Este documento describe los pasos necesarios para configurar y ejecutar el proyecto en un entorno local.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Requisitos previos
+
+1. **Node.js** (versión 18 o superior)
+2. **npm** (version 10.8.2 o superior)
+
+## Instalar dependencias
+
+Ejecuta el siguiente comando en la raíz del proyecto para instalar todas las dependencias definidas en package.json:
+
+```
+npm run install
+```
+
+## Variables de entorno
+
+En el directorio Frontend crea un archivo `.env` con la siguiente configuración
+
+```
+VITE_BACKEND_API = 'http://localhost:4000/usuarios'
+```
+
+> [!IMPORTANT]
+> El prefijo VITE\_ es obligatorio para que Vite exponga las variables
+> Las variables sin este prefijo no estarán disponibles en el código
+
+## Ejecutar proyecto
+
+```
+npm run dev
+```
+
+Abre tu navegador web y accede a la URL proporcionada en la terminal, generalmente http://localhost:5173.
+
+## Estructura principal
+
+```
+src/
+├── App.vue                 # Componente raíz de la aplicación
+│
+├── components/				# Componentes
+│   ├── Skeleton.vue        # Componente de carga
+│   ├── ThemeSwitcher.vue   # Selector de tema claro/oscuro
+│   ├── Icons/              # Componentes de iconografía
+│   ├── modals/             # Modales de la aplicación
+│   └── users/				# Componentes relacionados con usuarios
+│
+├── interfaces/             # Interfaces de TypeScript
+├── services/               # Servicios api
+└── stores/                 # Estados globales con Pinia
+```
