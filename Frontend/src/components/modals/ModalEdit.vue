@@ -63,28 +63,27 @@
             <button>close</button>
         </form>
     </dialog>
-    <div class="toast" v-if="showToast">
-        <div v-if="userStore.state.error !== ''" class="alert alert-error">
-            {{ userStore.state.error }}
-        </div>
-        <div v-else class="alert alert-success">User edited successfully!</div>
-    </div>
+    <Toast
+        v-if="showToast"
+        :error="userStore.state.error"
+        message="User edited successfully!"
+    />
 </template>
 <script setup lang="ts">
-import IconPerson from '../Icons/IconPerson.vue'
-import IconMail from '../Icons/IconMail.vue'
+import IconPerson from '../icons/IconPerson.vue'
+import IconMail from '../icons/IconMail.vue'
+import Toast from '../ui/Toast.vue'
 
+import type { User } from '../../interfaces/types'
 import { useUserStore } from '../../stores/userStore'
 import { ref, computed, watchEffect } from 'vue'
-import type { User } from '../../interfaces/types'
+import { useUserModal } from '../../composables/useUserModal'
 
 const userStore = useUserStore()
 
 const name = ref('')
 const email = ref('')
 const age = ref(0)
-
-const showToast = ref(false)
 
 watchEffect(() => {
     const selectedUser = userStore.user.selected
@@ -105,20 +104,14 @@ const isValid = computed(() => {
     )
 })
 
+const { showToast, handleAction } = useUserModal()
+
 const handleEdit = async () => {
-    const editModal = document.getElementById('editModal') as HTMLDialogElement
-
-    try {
-        const modifiedUser: Partial<User> = {
-            nombre: name.value,
-            correo: email.value,
-            edad: age.value
-        }
-
-        await userStore.editUser(modifiedUser)
-    } finally {
-        editModal.close()
-        showToast.value = true
+    const modifiedUser: Partial<User> = {
+        nombre: name.value,
+        correo: email.value,
+        edad: age.value
     }
+    await handleAction('edit', modifiedUser)
 }
 </script>

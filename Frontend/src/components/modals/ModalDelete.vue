@@ -30,32 +30,24 @@
             </div>
         </div>
     </dialog>
-    <div class="toast" v-if="showToast">
-        <div v-if="userStore.state.error !== ''" class="alert alert-error">
-            {{ userStore.state.error }}
-        </div>
-        <div v-else class="alert alert-success">User deleted successfully!</div>
-    </div>
+    <Toast
+        v-if="showToast"
+        :error="userStore.state.error"
+        message="User deleted successfully!"
+    />
 </template>
 
 <script setup lang="ts">
+import Toast from '../ui/Toast.vue'
+
 import { useUserStore } from '../../stores/userStore'
-import { ref } from 'vue'
+import { useUserModal } from '../../composables/useUserModal'
 
 const userStore = useUserStore()
 
-const showToast = ref(false)
+const { showToast, handleAction } = useUserModal()
 
-const handleDelete = async () => {
-    const deleteModal = document.getElementById(
-        'deleteModal'
-    ) as HTMLDialogElement
-
-    try {
-        await userStore.deleteUser()
-    } finally {
-        deleteModal.close()
-        showToast.value = true
-    }
+const handleDelete = () => {
+    handleAction('delete')
 }
 </script>

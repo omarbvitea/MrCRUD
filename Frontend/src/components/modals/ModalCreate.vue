@@ -63,20 +63,21 @@
             <button>close</button>
         </form>
     </dialog>
-    <div class="toast" v-if="showToast">
-        <div v-if="userStore.state.error !== ''" class="alert alert-error">
-            {{ userStore.state.error }}
-        </div>
-        <div v-else class="alert alert-success">User created successfully!</div>
-    </div>
+    <Toast
+        v-if="showToast"
+        :error="userStore.state.error"
+        message="User created successfully!"
+    />
 </template>
 <script setup lang="ts">
-import IconPerson from '../Icons/IconPerson.vue'
-import IconMail from '../Icons/IconMail.vue'
+import IconPerson from '../icons/IconPerson.vue'
+import IconMail from '../icons/IconMail.vue'
+import Toast from '../ui/Toast.vue'
 
 import { useUserStore } from '../../stores/userStore'
 import { ref, computed } from 'vue'
 import type { User } from '../../interfaces/types'
+import { useUserModal } from '../../composables/useUserModal'
 
 const userStore = useUserStore()
 
@@ -94,24 +95,14 @@ const isValid = computed(() => {
     )
 })
 
-const showToast = ref(false)
+const { showToast, handleAction } = useUserModal()
 
 const handleCreate = async () => {
-    const createModal = document.getElementById(
-        'createModal'
-    ) as HTMLDialogElement
-
-    try {
-        const newUser: Partial<User> = {
-            nombre: name.value,
-            correo: email.value,
-            edad: age.value
-        }
-
-        await userStore.createUser(newUser)
-    } finally {
-        createModal.close()
-        showToast.value = true
+    const newUser: Partial<User> = {
+        nombre: name.value,
+        correo: email.value,
+        edad: age.value
     }
+    await handleAction('create', newUser)
 }
 </script>
