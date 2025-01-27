@@ -4,9 +4,9 @@
             <h1 class="flex flex-col gap-5 text-2xl mb-9">
                 <p class="text-center">
                     Are you sure you want to delete
-                    <span class="text-warning"
-                        >@{{ userStore.user.selected?.nombre }}</span
-                    >
+                    <span class="text-warning">
+                        @{{ userStore.user.selected?.nombre }}
+                    </span>
                     from the list?
                 </p>
                 <div
@@ -20,18 +20,13 @@
                 <form method="dialog">
                     <button class="btn btn-soft">Cancel</button>
                 </form>
-                <form method="dialog">
-                    <button
-                        class="btn btn-error"
-                        @click="userStore.deleteUser()"
-                    >
-                        <p v-if="!userStore.state.isLoading">Delete</p>
-                        <span
-                            v-else
-                            class="loading loading-spinner loading-md"
-                        ></span>
-                    </button>
-                </form>
+                <button class="btn btn-error" @click="handleDelete()">
+                    <span
+                        v-if="userStore.state.isDeleting"
+                        class="loading loading-spinner loading-md"
+                    ></span>
+                    <p v-else>Delete</p>
+                </button>
             </div>
         </div>
     </dialog>
@@ -42,8 +37,21 @@
         <div v-else class="alert alert-success">User deleted successfully!</div>
     </div>
 </template>
+
 <script setup lang="ts">
 import { useUserStore } from '../../stores/userStore'
 
 const userStore = useUserStore()
+
+const handleDelete = async () => {
+    const deleteDialog = document.getElementById(
+        'deleteDialog'
+    ) as HTMLDialogElement
+
+    try {
+        await userStore.deleteUser()
+    } finally {
+        deleteDialog.close()
+    }
+}
 </script>

@@ -24,6 +24,7 @@ export const useUserStore = defineStore('user', {
         },
         state: {
             isLoading: false,
+            isDeleting: false,
             showToast: false,
             error: ''
         }
@@ -40,9 +41,7 @@ export const useUserStore = defineStore('user', {
                     `http://localhost:4000/usuarios?page=${page}`
                 )
                 this.user.list = response.data.users
-                this.pagination.total = response.data.total
-                this.pagination.totalPages = response.data.totalPages
-                this.pagination.currentPage = response.data.page
+                this.pagination = response.data.pagination
             } catch (err) {
                 this.state.error = 'Error al obtener los usuarios'
             } finally {
@@ -51,7 +50,7 @@ export const useUserStore = defineStore('user', {
         },
 
         async deleteUser() {
-            if (!this.user) return
+            this.state.isDeleting = true
             try {
                 await axios.delete(
                     `http://localhost:4000/usuarios/${this.user.selected?.id}`
@@ -61,6 +60,17 @@ export const useUserStore = defineStore('user', {
             } finally {
                 this.user.selected = null
                 this.state.showToast = true
+                this.state.isDeleting = false
+                this.fetchUsers(this.pagination.currentPage)
+            }
+        },
+
+        async createUser(user: User) {
+            try {
+                await axios.post('http://localhost:4000/usuarios', user)
+            } catch (error) {
+                this.state.error = 'Failed to create user'
+            } finally {
                 this.fetchUsers(this.pagination.currentPage)
             }
         }

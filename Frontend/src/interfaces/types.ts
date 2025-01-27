@@ -12,6 +12,7 @@ export interface UserState {
 
 export interface State {
     isLoading: boolean
+    isDeleting: boolean
     showToast: boolean
     error: string
 }
