@@ -7,6 +7,6 @@
     </div>
 </template>
 <script setup lang="ts">
-import ThemeSwitcher from './components/ThemeSwitcher.vue'
+import ThemeSwitcher from './components/ui/ThemeSwitcher.vue'
 import UsersDashboard from './components/users/UsersDashboard.vue'
 </script>

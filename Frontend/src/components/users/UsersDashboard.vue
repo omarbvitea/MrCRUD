@@ -33,16 +33,12 @@
                         <IconPlus /> Add user
                     </button>
                     <ModalCreate />
+                    <ModalEdit />
+                    <ModalDelete />
                 </div>
             </div>
             <Skeleton v-if="state.isLoading" class="mt-14" />
-            <UsersTable v-else>
-                <UserTableRow
-                    v-for="user in filteredUsers"
-                    :key="user.id"
-                    :user="user"
-                />
-            </UsersTable>
+            <UsersTable v-else :users="filteredUsers" />
         </div>
         <div class="w-full flex justify-center">
             <UsersPagination
@@ -57,16 +53,16 @@
 <script setup lang="ts">
 import { useUserStore } from '../../stores/userStore'
 import { storeToRefs } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
-import IconSearch from '../Icons/IconSearch.vue'
-import IconPlus from '../Icons/IconPlus.vue'
+import Skeleton from '../ui/Skeleton.vue'
+import IconSearch from '../icons/IconSearch.vue'
+import IconPlus from '../icons/IconPlus.vue'
 import ModalCreate from '../modals/ModalCreate.vue'
-import Skeleton from '../Skeleton.vue'
-import UserTableRow from './UserTableRow.vue'
+import ModalEdit from '../modals/ModalEdit.vue'
+import ModalDelete from '../modals/ModalDelete.vue'
 import UsersPagination from './UsersPagination.vue'
 import UsersTable from './UsersTable.vue'
-import { onMounted } from 'vue'
 
 const userStore = useUserStore()
 const { user, pagination, state } = storeToRefs(userStore)

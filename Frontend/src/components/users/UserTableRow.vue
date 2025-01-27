@@ -20,7 +20,7 @@
         </td>
         <td>
             <p class="hidden sm:flex">
-                {{ user.edad }}
+                {{ user.edad === 0 ? '-' : user.edad }}
             </p>
         </td>
         <td>
@@ -46,8 +46,8 @@
 
 <script setup lang="ts">
 import type { User } from '../../interfaces/types'
-import IconEdit from '../Icons/IconEdit.vue'
-import IconTrash from '../Icons/IconTrash.vue'
+import IconEdit from '../icons/IconEdit.vue'
+import IconTrash from '../icons/IconTrash.vue'
 import { useUserStore } from '../../stores/userStore'
 
 defineProps<{ user: User }>()

@@ -4,22 +4,25 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>
-                        <p class="hidden sm:flex">Email address</p>
-                    </th>
+                    <th><p class="hidden sm:flex">Email address</p></th>
                     <th><p class="hidden sm:flex">Age</p></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <slot />
+                <UserTableRow
+                    v-for="user in users"
+                    :key="user.id"
+                    :user="user"
+                />
             </tbody>
         </table>
-        <ModalDelete />
-        <ModalEdit />
     </div>
 </template>
+
 <script setup lang="ts">
-import ModalDelete from '../modals/ModalDelete.vue'
-import ModalEdit from '../modals/ModalEdit.vue'
+import type { User } from '../../interfaces/types'
+import UserTableRow from './UserTableRow.vue'
+
+defineProps<{ users: User[] }>()
 </script>
