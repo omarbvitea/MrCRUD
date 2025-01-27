@@ -25,12 +25,16 @@
         </td>
         <td>
             <div class="flex w-full items-center gap-1 md:gap-2 justify-end">
-                <button class="btn btn-ghost btn-circle">
+                <button
+                    class="btn btn-ghost btn-circle"
+                    onclick="editModal.showModal()"
+                    @click="userStore.setUser(user)"
+                >
                     <IconEdit class="text-info" />
                 </button>
                 <button
                     class="btn btn-ghost btn-circle"
-                    onclick="deleteDialog.showModal()"
+                    onclick="deleteModal.showModal()"
                     @click="userStore.setUser(user)"
                 >
                     <IconTrash class="text-error" />

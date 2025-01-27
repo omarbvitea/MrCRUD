@@ -24,11 +24,11 @@
                     </button>
                     <button
                         class="btn btn-primary"
-                        onclick="newUserModal.showModal()"
+                        onclick="createModal.showModal()"
                     >
                         <IconPlus /> Add user
                     </button>
-                    <DialogCreate />
+                    <ModalCreate />
                 </div>
             </div>
             <Skeleton v-if="state.isLoading" class="mt-14" />
@@ -55,7 +55,7 @@ import { storeToRefs } from 'pinia'
 
 import IconSearch from '../Icons/IconSearch.vue'
 import IconPlus from '../Icons/IconPlus.vue'
-import DialogCreate from '../dialogs/DialogCreate.vue'
+import ModalCreate from '../modals/ModalCreate.vue'
 import Skeleton from '../Skeleton.vue'
 import UserTableRow from './UserTableRow.vue'
 

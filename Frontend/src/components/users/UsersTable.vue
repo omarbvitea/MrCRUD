@@ -15,11 +15,11 @@
                 <slot />
             </tbody>
         </table>
-        <DialogDelete />
-        <DialogEdit />
+        <ModalDelete />
+        <ModalEdit />
     </div>
 </template>
 <script setup lang="ts">
-import DialogDelete from '../dialogs/DialogDelete.vue'
-import DialogEdit from '../dialogs/DialogEdit.vue'
+import ModalDelete from '../modals/ModalDelete.vue'
+import ModalEdit from '../modals/ModalEdit.vue'
 </script>
