@@ -30,7 +30,7 @@
             </div>
         </div>
     </dialog>
-    <div class="toast" v-if="userStore.state.showDeleteToast">
+    <div class="toast" v-if="showToast">
         <div v-if="userStore.state.error !== ''" class="alert alert-error">
             {{ userStore.state.error }}
         </div>
@@ -40,8 +40,11 @@
 
 <script setup lang="ts">
 import { useUserStore } from '../../stores/userStore'
+import { ref } from 'vue'
 
 const userStore = useUserStore()
+
+const showToast = ref(false)
 
 const handleDelete = async () => {
     const deleteModal = document.getElementById(
@@ -52,6 +55,7 @@ const handleDelete = async () => {
         await userStore.deleteUser()
     } finally {
         deleteModal.close()
+        showToast.value = true
     }
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <dialog id="editModal" class="modal">
-        <div class="modal-box flex flex-col">
+        <form class="modal-box flex flex-col" @submit.prevent="handleEdit()">
             <h1 class="text-3xl mb-9">
                 Edit <span class="text-primary font-medium">existing</span> user
             </h1>
@@ -48,8 +48,8 @@
             <div class="w-full mt-3">
                 <button
                     class="btn btn-primary"
+                    type="submit"
                     :disabled="!isValid"
-                    @click="handleEdit()"
                 >
                     <span
                         v-if="userStore.state.isEditing"
@@ -58,12 +58,12 @@
                     <p v-else>Edit</p>
                 </button>
             </div>
-        </div>
+        </form>
         <form method="dialog" class="modal-backdrop">
             <button>close</button>
         </form>
     </dialog>
-    <div class="toast" v-if="userStore.state.showEditToast">
+    <div class="toast" v-if="showToast">
         <div v-if="userStore.state.error !== ''" class="alert alert-error">
             {{ userStore.state.error }}
         </div>
@@ -83,6 +83,8 @@ const userStore = useUserStore()
 const name = ref('')
 const email = ref('')
 const age = ref(0)
+
+const showToast = ref(false)
 
 watchEffect(() => {
     const selectedUser = userStore.user.selected
@@ -116,6 +118,7 @@ const handleEdit = async () => {
         await userStore.editUser(modifiedUser)
     } finally {
         editModal.close()
+        showToast.value = true
     }
 }
 </script>

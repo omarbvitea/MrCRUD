@@ -1,10 +1,10 @@
 <template>
     <dialog id="createModal" class="modal">
-        <div class="modal-box flex flex-col">
+        <form class="modal-box flex flex-col" @submit.prevent="handleCreate()">
             <h1 class="text-3xl mb-9">
                 Create <span class="text-primary font-medium">new</span> user
             </h1>
-            <form class="flex flex-col gap-2">
+            <div class="flex flex-col gap-2">
                 <div>
                     <label class="input validator w-full">
                         <IconPerson />
@@ -44,12 +44,12 @@
                         <p class="validator-hint">Enter a valid age</p>
                     </div>
                 </div>
-            </form>
+            </div>
             <div class="w-full mt-3">
                 <button
                     class="btn btn-primary"
                     :disabled="!isValid"
-                    @click="handleCreate()"
+                    type="submit"
                 >
                     <span
                         v-if="userStore.state.isCreating"
@@ -58,12 +58,12 @@
                     <p v-else>Create</p>
                 </button>
             </div>
-        </div>
+        </form>
         <form method="dialog" class="modal-backdrop">
             <button>close</button>
         </form>
     </dialog>
-    <div class="toast" v-if="userStore.state.showCreateToast">
+    <div class="toast" v-if="showToast">
         <div v-if="userStore.state.error !== ''" class="alert alert-error">
             {{ userStore.state.error }}
         </div>
@@ -84,7 +84,7 @@ const name = ref('')
 const email = ref('')
 const age = ref(0)
 
-const emailRegex = /^[^@]+@[^@.]+(\.[a-zA-Z]{2,})?$/
+const emailRegex = /^[^@]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$/
 
 const isValid = computed(() => {
     return (
@@ -93,6 +93,8 @@ const isValid = computed(() => {
         age.value >= 0
     )
 })
+
+const showToast = ref(false)
 
 const handleCreate = async () => {
     const createModal = document.getElementById(
@@ -109,6 +111,7 @@ const handleCreate = async () => {
         await userStore.createUser(newUser)
     } finally {
         createModal.close()
+        showToast.value = true
     }
 }
 </script>
