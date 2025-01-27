@@ -1,5 +1,8 @@
 # MrCrud Guide
 
+> [!IMPORTANT]
+> La base de datos se genera con un script y un archivo `.sql`, en la documentación del backend se especifica
+
 > [!NOTE]
 > Este proyecto ha sido probado tanto en **Windows 11** como en **Manjaro Linux** y es totalmente funcional
 
@@ -25,3 +28,4 @@ El frontend es una **SPA responsive** construido con:
 - **Pinia** para el manejo del estado en Vue
 
 [Link para la documentación Frontend](./Frontend/README.md)
+
