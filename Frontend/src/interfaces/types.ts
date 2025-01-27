@@ -15,9 +15,6 @@ export interface State {
     isCreating: boolean
     isDeleting: boolean
     isEditing: boolean
-    showDeleteToast: boolean
-    showCreateToast: boolean
-    showEditToast: boolean
     error: string
 }
 

@@ -26,9 +26,6 @@ export const useUserStore = defineStore('user', () => {
         isDeleting: false,
         isEditing: false,
         isCreating: false,
-        showDeleteToast: false,
-        showCreateToast: false,
-        showEditToast: false,
         error: ''
     })
 
@@ -57,7 +54,6 @@ export const useUserStore = defineStore('user', () => {
             state.value.error = 'Failed to delete user'
         } finally {
             user.value.selected = null
-            state.value.showDeleteToast = true
             state.value.isDeleting = false
             fetchUsers(pagination.value.currentPage)
         }
@@ -71,7 +67,6 @@ export const useUserStore = defineStore('user', () => {
             state.value.error = error.response.data.message
         } finally {
             state.value.isCreating = false
-            state.value.showCreateToast = true
             fetchUsers(pagination.value.currentPage)
         }
     }
@@ -87,7 +82,6 @@ export const useUserStore = defineStore('user', () => {
             state.value.error = error.response.data.message
         } finally {
             state.value.isEditing = false
-            state.value.showEditToast = true
             fetchUsers(pagination.value.currentPage)
         }
     }
