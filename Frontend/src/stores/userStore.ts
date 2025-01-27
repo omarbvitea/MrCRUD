@@ -6,6 +6,7 @@ import type {
     UserState
 } from '../interfaces/types'
 import axios from 'axios'
+import { apiUrl } from '../services'
 
 export const useUserStore = defineStore('user', {
     state: (): {
@@ -37,9 +38,7 @@ export const useUserStore = defineStore('user', {
         async fetchUsers(page: number) {
             this.state.isLoading = true
             try {
-                const response = await axios.get(
-                    `http://localhost:4000/usuarios?page=${page}`
-                )
+                const response = await axios.get(`${apiUrl}?page=${page}`)
                 this.user.list = response.data.users
                 this.pagination = response.data.pagination
             } catch (err) {
@@ -52,9 +51,7 @@ export const useUserStore = defineStore('user', {
         async deleteUser() {
             this.state.isDeleting = true
             try {
-                await axios.delete(
-                    `http://localhost:4000/usuarios/${this.user.selected?.id}`
-                )
+                await axios.delete(`${apiUrl}/${this.user.selected?.id}`)
             } catch (error) {
                 this.state.error = 'Failed to delete user'
             } finally {
@@ -67,7 +64,7 @@ export const useUserStore = defineStore('user', {
 
         async createUser(user: User) {
             try {
-                await axios.post('http://localhost:4000/usuarios', user)
+                await axios.post(apiUrl, user)
             } catch (error) {
                 this.state.error = 'Failed to create user'
             } finally {
