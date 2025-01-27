@@ -41,12 +41,12 @@ Abre tu navegador web y accede a la URL proporcionada en la terminal, generalmen
 src/
 ├── App.vue                 # Componente raíz de la aplicación
 │
-├── components/				# Componentes
+├── components/		    # Componentes
 │   ├── Skeleton.vue        # Componente de carga
 │   ├── ThemeSwitcher.vue   # Selector de tema claro/oscuro
 │   ├── Icons/              # Componentes de iconografía
 │   ├── modals/             # Modales de la aplicación
-│   └── users/				# Componentes relacionados con usuarios
+│   └── users/	            # Componentes relacionados con usuarios
 │
 ├── interfaces/             # Interfaces de TypeScript
 ├── services/               # Servicios api
