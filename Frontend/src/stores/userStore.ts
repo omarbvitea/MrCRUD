@@ -40,7 +40,7 @@ export const useUserStore = defineStore('user', () => {
             user.value.list = response.data.users
             pagination.value = response.data.pagination
         } catch (error) {
-            state.value.error = 'Error al obtener los usuarios'
+            state.value.error = 'Something went wrong :('
         } finally {
             state.value.isLoading = false
         }

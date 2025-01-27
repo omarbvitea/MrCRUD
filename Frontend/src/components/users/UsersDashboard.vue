@@ -38,12 +38,13 @@
                 </div>
             </div>
             <Skeleton v-if="state.isLoading" class="mt-14" />
-            <NoUsers v-else-if="user.list.length === 0" />
+            <Error v-else-if="state.error" :message="state.error" />
+            <NoUsers v-else-if="user.list.length == 0" />
             <UsersTable v-else :users="filteredUsers" />
         </div>
         <div class="w-full flex justify-center">
             <UsersPagination
-                v-if="user.list.length !== 0"
+                v-if="pagination.totalPages !== 0"
                 :currentPage="pagination.currentPage"
                 :totalPages="pagination.totalPages"
                 @change-page="changePage"
@@ -55,17 +56,21 @@
 <script setup lang="ts">
 import { useUserStore } from '../../stores/userStore'
 import { storeToRefs } from 'pinia'
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watchEffect } from 'vue'
 
 import Skeleton from '../ui/Skeleton.vue'
+import Error from '../ui/Error.vue'
+import NoUsers from '../ui/NoUsers.vue'
+
 import IconSearch from '../icons/IconSearch.vue'
 import IconPlus from '../icons/IconPlus.vue'
+
 import ModalCreate from '../modals/ModalCreate.vue'
 import ModalEdit from '../modals/ModalEdit.vue'
 import ModalDelete from '../modals/ModalDelete.vue'
+
 import UsersPagination from './UsersPagination.vue'
 import UsersTable from './UsersTable.vue'
-import NoUsers from '../ui/NoUsers.vue'
 
 const userStore = useUserStore()
 const { user, pagination, state } = storeToRefs(userStore)
@@ -82,6 +87,12 @@ const filteredUsers = computed(() => {
             user.correo.toLowerCase().includes(toSearch.value.toLowerCase()) ||
             user.edad?.toString().includes(toSearch.value.toLowerCase())
     )
+})
+
+watchEffect(() => {
+    if (user.value.list.length === 0 && pagination.value.currentPage > 1) {
+        userStore.fetchUsers(pagination.value.currentPage - 1)
+    }
 })
 
 const changePage = (page: number) => {
