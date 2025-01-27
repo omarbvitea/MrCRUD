@@ -9,16 +9,18 @@ import {
 } from '../models/user'
 
 const getUsers = async (req: Request, res: Response) => {
-    const page = Number(req.query.page as string) || 1
+    const currentPage = Number(req.query.page as string) || 1
     const limit = Number(req.query.limit as string) || 7
 
-    const { users, total } = await getUsersModel(page, limit)
+    const { users, total } = await getUsersModel(currentPage, limit)
 
     res.json({
         users,
-        total,
-        page,
-        totalPages: Math.ceil(total / limit)
+        pagination: {
+			total,
+        	currentPage,
+        	totalPages: Math.ceil(total / limit)
+		}
     })
 }
 
