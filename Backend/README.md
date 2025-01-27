@@ -8,7 +8,8 @@ Este documento describe los pasos necesarios para configurar y ejecutar el proye
 2. **npm** (version 10.8.2 o superior)
 3. **Mysql** (configurado con usuario y contraseña)
 
-> [!NOTE] > **MariaDB** es una alternativa compatible a MySQL. Fue probado en Manjaro Linux y funcionó sin problemas.
+> [!NOTE]
+> **MariaDB** es una alternativa compatible a MySQL. Fue probado en Manjaro Linux y funcionó sin problemas.
 
 ## Instalar dependencias
 
@@ -56,7 +57,7 @@ Por defecto tendrias la API REST en http://localhost:4000.
 
 ```
 Backend/
-├── schema.sql 		    # Definición del esquema de base de datos
+├── schema.sql 		# Definición del esquema de base de datos
 │
 └── src/                # Código fuente principal
     ├── index.ts        # Punto de entrada de la aplicación
@@ -66,5 +67,5 @@ Backend/
     ├── middleware/     # Interceptores de peticiones
     ├── models/         # Modelos de datos y lógica de negocio
     └── routes/         # Definición de endpoints y validaciones
-	└── schemas/        # Esquemas de validación Zod
+    └── schemas/        # Esquemas de validación Zod
 ```
