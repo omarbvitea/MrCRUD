@@ -23,8 +23,8 @@ En el directorio Frontend crea un archivo `.env` con la siguiente configuración
 VITE_BACKEND_API = 'http://localhost:4000/usuarios'
 ```
 
-> [!IMPORTANT]
-> El prefijo VITE\_ es obligatorio para que vite exponga las variables
+> [!WARNING]
+> El prefijo `VITE_` es obligatorio para que vite exponga las variables
 
 ## Ejecutar proyecto
 
